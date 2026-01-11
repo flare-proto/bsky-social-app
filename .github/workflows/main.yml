@@ -14,7 +14,6 @@ permissions:
 jobs:
   webpack-analyzer:
     runs-on: ubuntu-22.04
-    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.event_name == 'pull_request'}}
     steps:
       - name: Deploy React to GitHub Pages
         # You may pin to the exact commit or the version.
