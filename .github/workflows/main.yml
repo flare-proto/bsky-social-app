@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: [main]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event_name }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  pull-requests: write
+  actions: write
+  contents: read
+
+jobs:
+  webpack-analyzer:
+    runs-on: ubuntu-22.04
+    if: ${{ github.event.pull_request.head.repo.full_name == github.repository && github.event_name == 'pull_request'}}
+    steps:
+      - name: Deploy React to GitHub Pages
+        # You may pin to the exact commit or the version.
+        # uses: bitovi/github-actions-react-to-github-pages@4cf343888989e21112bce7e59156242a0e1defb3
+        uses: bitovi/github-actions-react-to-github-pages@v1.2.4
